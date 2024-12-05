@@ -1,6 +1,6 @@
-const apiUrl = "https://kr.camptratech.com/kr/wp-json/custom/v1/bg-color";
+const platform_code = window.location.url + "/kr";
 let tab = localStorage.getItem("tab") || "home";
-
+console.log("kokokok im here");
 const stopRecording = () => {
   // event.preventDefault();
   console.log("Stop recording button pressed");
@@ -174,7 +174,7 @@ const showIframe = () => {
 
   iframeContainer.style.display = "block";
   imgButton.src =
-    "https://kr.camptratech.com/kr/wp-content/uploads/2024/09/downArrowIcon.png";
+    platform_code + "/wp-content/uploads/2024/09/downArrowIcon.png";
 };
 const hideIframe = () => {
   const iframeContainer = document.getElementById("krWikiIframeContainer");
@@ -197,8 +197,7 @@ const hideIframe = () => {
   }
 
   iframeContainer.style.display = "none";
-  imgButton.src =
-    "https://kr.camptratech.com/kr/wp-content/uploads/2024/09/chat.png";
+  imgButton.src = platform_code + "/wp-content/uploads/2024/09/chat.png";
 };
 const toggleIframeDisplay = () => {
   const iframeContainer = document.getElementById("krWikiIframeContainer");
@@ -316,9 +315,12 @@ const sendOnLoadMessage = () => {
   //   url: window.location.href,
   //   tab: tab,
   // };
-  console.log("test: ", {
+  const userEmail = window.userEmail;
+
+  console.log("kokokok forKRPlatform.js ", { userEmail });
+  console.log("kokokok forKRPlatform.js test: ", {
     token: localStorage.getItem("jwt_token"),
-    userEmail: localStorage.getItem("userEmail"),
+    userEmail,
   });
 
   const message = {
@@ -326,7 +328,7 @@ const sendOnLoadMessage = () => {
     displayName: localStorage.getItem("display_name"),
     url: getBaseUrl(window.location.href),
     token: localStorage.getItem("jwt_token"),
-    userEmail: localStorage.getItem("userEmail"),
+    userEmail,
     tab: tab,
   };
 
@@ -500,7 +502,7 @@ function createToast() {
 }
 function createButtonForIframe() {
   const button = document.createElement("button");
-  fetch(apiUrl)
+  fetch(platform_code + "/wp-json/custom/v1/bg-color")
     .then((response) => response.json())
     .then((data) => {
       // Apply fetched RGBA color to the button background
@@ -535,7 +537,7 @@ function createButtonForIframe() {
   // Creating the img element inside the button
   const img = document.createElement("img");
   img.alt = "icon";
-  img.src = "https://kr.camptratech.com/kr/wp-content/uploads/2024/09/chat.png";
+  img.src = platform_code + "/wp-content/uploads/2024/09/chat.png";
 
   // Append img to button
   button.appendChild(img);
@@ -571,7 +573,7 @@ function createIframeContainer() {
 function createIframe() {
   const iframeContainer = document.getElementById("krWikiIframeContainer");
   // const iframeUrl =
-  //   "https://kr.camptratech.com/krproxy/" +
+  //   platform_code + "proxy/" +
   //   "https://krstaging.camptratech.com/knowledgewiki";
   const iframeUrl = "http://localhost:5173/knowledgewiki";
 
@@ -771,10 +773,4 @@ const handleMessage = (event) => {
   }
 };
 window.addEventListener("message", handleMessage);
-var hasBaseUrl = localStorage.getItem("jwt_token");
-
-console.log({ hasBaseUrl });
-if (hasBaseUrl) {
-  console.log("initializing UI....");
-  initializeUI();
-}
+initializeUI();
