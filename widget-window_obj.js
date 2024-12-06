@@ -1,4 +1,6 @@
-const platform_code = window.location.url + "/kr";
+const test = true;
+const platform_code =
+  test == true ? "https://kr.camptratech.com" : window.location.url + "/kr";
 let tab = localStorage.getItem("tab") || "home";
 console.log("kokokok im here");
 const stopRecording = () => {
