@@ -315,7 +315,8 @@ const sendOnLoadMessage = () => {
   //   url: window.location.href,
   //   tab: tab,
   // };
-  const userEmail = window.userEmail;
+  const userEmail = window.userData.email;
+  const displayName = window.userData.displayName;
 
   console.log("kokokok forKRPlatform.js ", { userEmail });
   console.log("kokokok forKRPlatform.js test: ", {
@@ -325,7 +326,7 @@ const sendOnLoadMessage = () => {
 
   const message = {
     username: "#{securityContext.userName}",
-    displayName: localStorage.getItem("display_name"),
+    displayName,
     url: getBaseUrl(window.location.href),
     token: localStorage.getItem("jwt_token"),
     userEmail,
