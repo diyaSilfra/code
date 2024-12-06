@@ -315,8 +315,9 @@ const sendOnLoadMessage = () => {
   //   url: window.location.href,
   //   tab: tab,
   // };
-  const userEmail = window.userData.email;
-  const displayName = window.userData.displayName;
+  const currentScript = document.currentScript;
+  const userEmail = currentScript.getAttribute("data-email");
+  const displayName = currentScript.getAttribute("data-display");
 
   console.log("kokokok forKRPlatform.js ", { userEmail });
   console.log("kokokok forKRPlatform.js test: ", {
