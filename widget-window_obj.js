@@ -574,7 +574,7 @@ function createIframe() {
   const iframeUrl = proxyUrl + platform + "/knowledgewiki";
   // const iframeUrl = platform + "/knowledgewiki";
   // const iframeUrl = "http://localhost:5173/knowledgewiki";
-  console.log({ iframeUrl });
+  console.log("inside widget. ", { iframeUrl });
 
   const maxRetries = 3;
   let attempt = 1;
