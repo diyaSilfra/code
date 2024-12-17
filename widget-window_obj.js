@@ -8,6 +8,8 @@ const platform_code =
 
 const proxyUrl = "https://kr.camptratech.com/krproxy/";
 const iframeUrl = proxyUrl + platform + "/knowledgewiki";
+console.log("inside widget. ", { iframeUrl });
+
 // let tab = localStorage.getItem("tab") || "home";
 
 console.log("kokokok im here");
@@ -576,7 +578,6 @@ function createIframe() {
 
   // const iframeUrl = platform + "/knowledgewiki";
   // const iframeUrl = "http://localhost:5173/knowledgewiki";
-  console.log("inside widget. ", { iframeUrl });
 
   const maxRetries = 3;
   let attempt = 1;
