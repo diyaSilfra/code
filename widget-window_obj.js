@@ -570,10 +570,8 @@ function createIframeContainer() {
 }
 function createIframe() {
   const iframeContainer = document.getElementById("krWikiIframeContainer");
-  const iframeUrl =
-    platform === "https://krstaging.camptratech.com"
-      ? "https://kr.camptratech.com/krproxy/" + platform + "/knowledgewiki"
-      : platform + "/knowledgewiki";
+  const proxyUrl = "https://kr.camptratech.com/krproxy/";
+  const iframeUrl = proxyUrl + platform + "/knowledgewiki";
   // const iframeUrl = platform + "/knowledgewiki";
   // const iframeUrl = "http://localhost:5173/knowledgewiki";
   console.log({ iframeUrl });
