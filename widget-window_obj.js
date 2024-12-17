@@ -1,7 +1,12 @@
-const test = true;
+const test = false;
+const platform =
+  test === true ? "https://krstaging.camptratech.com" : window.location.origin;
 const platform_code =
-  test == true ? "https://kr.camptratech.com" : window.location.url + "/kr";
-let tab = localStorage.getItem("tab") || "home";
+  platform === "https://krstaging.camptratech.com"
+    ? platform + "/stagingkr"
+    : platform + "/kr";
+// let tab = localStorage.getItem("tab") || "home";
+
 console.log("kokokok im here");
 const stopRecording = () => {
   // event.preventDefault();
@@ -295,13 +300,7 @@ const takeScreenshot = (event) => {
   iframeContainer.style.display = "block";
   iframe.contentWindow.postMessage({ action: "takeScreenshot" }, "*");
 };
-function getBaseUrl(url) {
-  const trimmedUrl = url.replace(/\/+$/, ""); // Remove trailing slashes
-  const singleSlashedUrl = trimmedUrl.replace(/([^:]\/)\/+/g, "$1"); // Replace double slashes with single slash
-  const parsedUrl = new URL(singleSlashedUrl);
-  const pathParts = parsedUrl.pathname.split("/");
-  return `${parsedUrl.origin}/${pathParts[1]}/`;
-}
+
 const sendOnLoadMessage = () => {
   const iframe = document.getElementById("iframec");
   if (!iframe) {
@@ -325,10 +324,10 @@ const sendOnLoadMessage = () => {
   const message = {
     username: "#{securityContext.userName}",
     displayName,
-    url: getBaseUrl(window.location.href),
+    url: window.location.origin,
     token: localStorage.getItem("jwt_token"),
     userEmail,
-    tab: tab,
+    // tab: tab,
   };
 
   iframe.contentWindow.postMessage(message, "*");
@@ -571,10 +570,13 @@ function createIframeContainer() {
 }
 function createIframe() {
   const iframeContainer = document.getElementById("krWikiIframeContainer");
-  // const iframeUrl =
-  //   platform_code + "proxy/" +
-  //   "https://krstaging.camptratech.com/knowledgewiki";
-  const iframeUrl = "http://localhost:5173/knowledgewiki";
+  const iframeUrl =
+    platform === "https://krstaging.camptratech.com"
+      ? "https://kr.camptratech.com/krproxy/" + platform + "/knowledgewiki"
+      : platform + "/knowledgewiki";
+  // const iframeUrl = platform + "/knowledgewiki";
+  // const iframeUrl = "http://localhost:5173/knowledgewiki";
+  console.log({ iframeUrl });
 
   const maxRetries = 3;
   let attempt = 1;
@@ -740,11 +742,11 @@ const handleMessage = (event) => {
       localStorage.setItem("screenshot", "active");
       showScreenshotButton();
       break;
-    case "tabChange":
-      if (tab) {
-        localStorage.setItem("tab", tab);
-      }
-      break;
+    // case "tabChange":
+    //   if (tab) {
+    //     localStorage.setItem("tab", tab);
+    //   }
+    //   break;
     default:
       break;
   }
