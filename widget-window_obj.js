@@ -1,3 +1,4 @@
+console.log("Script loaded successfully");
 const test = true;
 const platform =
   test === true ? "https://kr.camptratech.com" : window.location.origin;
