@@ -5,6 +5,9 @@ const platform_code =
   platform === "https://krstaging.camptratech.com"
     ? platform + "/stagingkr"
     : platform + "/kr";
+
+const proxyUrl = "https://kr.camptratech.com/krproxy/";
+const iframeUrl = proxyUrl + platform + "/knowledgewiki";
 // let tab = localStorage.getItem("tab") || "home";
 
 console.log("kokokok im here");
@@ -570,8 +573,7 @@ function createIframeContainer() {
 }
 function createIframe() {
   const iframeContainer = document.getElementById("krWikiIframeContainer");
-  const proxyUrl = "https://kr.camptratech.com/krproxy/";
-  const iframeUrl = proxyUrl + platform + "/knowledgewiki";
+
   // const iframeUrl = platform + "/knowledgewiki";
   // const iframeUrl = "http://localhost:5173/knowledgewiki";
   console.log("inside widget. ", { iframeUrl });
