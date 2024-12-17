@@ -1,6 +1,6 @@
-const test = false;
+const test = true;
 const platform =
-  test === true ? "https://krstaging.camptratech.com" : window.location.origin;
+  test === true ? "https://kr.camptratech.com" : window.location.origin;
 const platform_code =
   platform === "https://krstaging.camptratech.com"
     ? platform + "/stagingkr"
